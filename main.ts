@@ -1,9 +1,7 @@
-input.onLoudSound(function () {
-    light.showAnimation(light.cometAnimation, 1000)
-})
 input.onGesture(Gesture.Shake, function () {
     music.baDing.play()
     light.showAnimation(light.rainbowAnimation, 500)
+    makerController.player1.press(ArcadeButton.B)
 })
 forever(function () {
     if (input.buttonA.isPressed()) {
