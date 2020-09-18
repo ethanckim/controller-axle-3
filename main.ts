@@ -1,5 +1,6 @@
 input.onGesture(Gesture.Shake, function () {
     music.baDing.play()
+    light.showAnimation(light.rainbowAnimation, 500)
 })
 forever(function () {
     if (input.buttonA.isPressed()) {
