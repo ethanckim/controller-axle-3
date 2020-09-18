@@ -1,3 +1,6 @@
+input.onGesture(Gesture.Shake, function () {
+    music.baDing.play()
+})
 forever(function () {
     if (input.buttonA.isPressed()) {
         light.showRing(
