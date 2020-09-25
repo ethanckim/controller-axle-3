@@ -5,9 +5,9 @@ const JUMP = ArcadeButton.B
 const START_BTN = ArcadeButton.A
 
 // Set switch direction in which arcade button is pressed
-let SWITCH_TRIGGER = SwitchDirection.Right
+let SwitchTrigger = SwitchDirection.Right
 if (input.switchRight())
-	SWITCH_TRIGGER = SwitchDirection.Left
+	SwitchTrigger = SwitchDirection.Left
 
 forever(function () {
     light.showRing(
@@ -25,7 +25,7 @@ input.buttonA.onEvent(ButtonEvent.Click, function () {
 input.buttonB.onEvent(ButtonEvent.Click, function () {
     control.waitMicros(10)
     makerController.player1.press(RIGHT)
-light.showRing(
+    light.showRing(
     `black black black black black red red red red red`
     )
     console.log("Pressed RIGHT")
@@ -36,10 +36,10 @@ input.onGesture(Gesture.Shake, function () {
     music.baDing.play()
     console.log("Shaked")
 })
-input.onSwitchMoved(SWITCH_TRIGGER, function () {
+input.onSwitchMoved(SwitchTrigger, function () {
     control.waitMicros(10)
     makerController.player1.press(START_BTN)
-light.showAnimation(light.rainbowAnimation, 500)
+    light.showAnimation(light.rainbowAnimation, 500)
     music.jumpUp.play()
     console.log("Switch Start")
 })
