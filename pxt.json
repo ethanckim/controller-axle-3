@@ -16,7 +16,7 @@
     "supportedTargets": [
         "adafruit"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "yotta": {
         "config": {
             "PXT_GC_CHECKS": 1

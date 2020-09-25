@@ -1,24 +1,45 @@
-input.onGesture(Gesture.Shake, function () {
-    music.baDing.play()
-    light.showAnimation(light.rainbowAnimation, 500)
-    makerController.player1.press(ArcadeButton.B)
-})
+// Button Mapping Constants
+const LEFT = ArcadeButton.Left
+const RIGHT = ArcadeButton.Right
+const JUMP = ArcadeButton.B
+const START_BTN = ArcadeButton.A
+
+// Set switch direction in which arcade button is pressed
+let SWITCH_TRIGGER = SwitchDirection.Right
+if (input.switchRight())
+	SWITCH_TRIGGER = SwitchDirection.Left
+
 forever(function () {
-    if (input.buttonA.isPressed()) {
-        light.showRing(
-        "red red red red red black black black black black"
-        )
-        makerController.player1.setButton(ArcadeButton.Left, true)
-    } else if (input.buttonB.isPressed()) {
-        light.showRing(
-        "black black black black black red red red red red"
-        )
-        makerController.player1.setButton(ArcadeButton.Right, true)
-    } else if (!(input.buttonA.isPressed()) && !(input.buttonB.isPressed())) {
-        light.showRing(
-        "black black black black black black black black black black"
-        )
-        makerController.player1.setButton(ArcadeButton.Left, false)
-        makerController.player1.setButton(ArcadeButton.Right, false)
-    }
+    light.showRing(
+    `black black white black black black black white black black`
+    )
+})
+input.buttonA.onEvent(ButtonEvent.Click, function () {
+    control.waitMicros(10)
+    makerController.player1.press(LEFT)
+    light.showRing(
+    `red red red red red black black black black black`
+    )
+    console.log("Pressed LEFT")
+})
+input.buttonB.onEvent(ButtonEvent.Click, function () {
+    control.waitMicros(10)
+    makerController.player1.press(RIGHT)
+light.showRing(
+    `black black black black black red red red red red`
+    )
+    console.log("Pressed RIGHT")
+})
+input.onGesture(Gesture.Shake, function () {
+    makerController.player1.press(JUMP)
+    light.showAnimation(light.runningLightsAnimation, 500)
+    music.baDing.play()
+    console.log("Shaked")
+})
+input.onSwitchMoved(SWITCH_TRIGGER, function () {
+    control.waitMicros(10)
+    makerController.player1.press(START_BTN)
+light.showAnimation(light.rainbowAnimation, 500)
+    music.jumpUp.play()
+    console.log("Switch Start")
 })
